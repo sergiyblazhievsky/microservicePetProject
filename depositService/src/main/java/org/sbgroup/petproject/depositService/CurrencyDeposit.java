@@ -18,7 +18,7 @@ public class CurrencyDeposit
     private String currency;
 
     @Column(name="amount")
-    private BigDecimal amount;
+    private BigDecimal amount = new BigDecimal(0);
     private int        port;
 
     public CurrencyDeposit()

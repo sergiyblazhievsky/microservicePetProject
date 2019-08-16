@@ -19,7 +19,7 @@ public class DepositController
 
     @GetMapping("/currency-deposit/userId/{userId}/currency/{currency}/amount/{amount}")
     public CurrencyDeposit depositAmount
-        (@PathVariable Long userId, @PathVariable String currency, BigDecimal amount){
+        (@PathVariable Long userId, @PathVariable String currency, @PathVariable BigDecimal amount){
 
         CurrencyDeposit accountState =
             repository.findByUserIdAndCurrency(userId, currency);
@@ -35,7 +35,7 @@ public class DepositController
 
     @GetMapping("/currency-withdraw/userId/{userId}/currency/{currency}/amount/{amount}")
     public CurrencyDeposit withdrawAmount
-        (@PathVariable Long userId, @PathVariable String currency, BigDecimal amount){
+        (@PathVariable Long userId, @PathVariable String currency, @PathVariable BigDecimal amount){
 
         CurrencyDeposit accountState =
             repository.findByUserIdAndCurrency(userId, currency);
