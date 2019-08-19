@@ -16,7 +16,10 @@ public class CurrencyConversionController
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private CurrencyExchangeServiceProxy proxy;
+    private CurrencyExchangeServiceProxy ratesProxy;
+
+    @Autowired
+    private CurrencyDepositServiceProxy depositProxy;
 
     @Autowired
     private Environment environment;
@@ -28,9 +31,13 @@ public class CurrencyConversionController
     public CurrencyConversionBean convertCurrencyFeign(@PathVariable String from, @PathVariable String to,
                                                        @PathVariable BigDecimal quantity) {
 
-        CurrencyConversionBean conversionRequest = proxy.retrieveExchangeValue(from, to);
+        CurrencyConversionBean conversionRequest = ratesProxy.retrieveExchangeValue(from, to);
 
         logger.info("{}", conversionRequest);
+
+        Long userId = 1l;
+
+        CurrencyConversionBean currencyWithdraw = depositProxy.withdrawValue(userId, from, quantity.multiply(conversionRequest.getConversionMultiple()));
 
         CurrencyConversionBean response = new CurrencyConversionBean(conversionRequest.getId(), from, to, conversionRequest.getConversionMultiple(), quantity,
                                    quantity.multiply(conversionRequest.getConversionMultiple()), conversionRequest.getPort());
