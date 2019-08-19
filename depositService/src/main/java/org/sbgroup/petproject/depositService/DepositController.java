@@ -24,6 +24,11 @@ public class DepositController
         CurrencyDeposit accountState =
             repository.findByUserIdAndCurrency(userId, currency);
 
+        if (accountState == null)
+        {
+            accountState = createNewRecord(userId, currency);
+        }
+
         accountState.setAmount(accountState.getAmount().add(amount));
         repository.saveAndFlush(accountState);
 
@@ -39,6 +44,11 @@ public class DepositController
 
         CurrencyDeposit accountState =
             repository.findByUserIdAndCurrency(userId, currency);
+
+        if (accountState == null)
+        {
+            accountState = createNewRecord(userId, currency);
+        }
 
         accountState.setAmount(accountState.getAmount().subtract(amount));
         repository.saveAndFlush(accountState);
