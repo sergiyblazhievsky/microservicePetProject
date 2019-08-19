@@ -1,14 +1,31 @@
 package org.sbgroup.petproject.exchangeService;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class CurrencyConversionBean
 {
+    @Id
     private Long id;
+
+    @Column(name="user_id")
+    private Long userId;
+
+    @Column(name="currency_from")
     private String from;
+
+    @Column(name="currency_to")
     private String to;
+
+    @Column(name="conversion_multiple")
     private BigDecimal conversionMultiple;
+
+    @Column(name="quantity")
     private BigDecimal quantity;
+
     private BigDecimal totalCalculatedAmount;
     private int port;
 
