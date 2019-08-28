@@ -58,4 +58,13 @@ public class DepositController
 
         return accountState;
     }
+
+    private CurrencyDeposit createNewRecord(@PathVariable Long userId,
+                                            @PathVariable String currency)
+    {
+        CurrencyDeposit accountState;
+        CurrencyDeposit accountStateLast = repository.findFirst1ByOrderByIdDesc();
+        accountState = new CurrencyDeposit(accountStateLast.getId() + 1, userId, currency, new BigDecimal(0));
+        return accountState;
+    }
 }
