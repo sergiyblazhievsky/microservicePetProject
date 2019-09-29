@@ -27,14 +27,13 @@ public class CurrencyConversionBean
     private BigDecimal quantity;
 
     private BigDecimal totalCalculatedAmount;
-    private int port;
 
     public CurrencyConversionBean() {
 
     }
 
     public CurrencyConversionBean(Long id, String from, String to, BigDecimal conversionMultiple, BigDecimal quantity,
-                                  BigDecimal totalCalculatedAmount, int port) {
+                                  BigDecimal totalCalculatedAmount) {
         super();
         this.id = id;
         this.from = from;
@@ -42,7 +41,6 @@ public class CurrencyConversionBean
         this.conversionMultiple = conversionMultiple;
         this.quantity = quantity;
         this.totalCalculatedAmount = totalCalculatedAmount;
-        this.port = port;
     }
 
     public Long getId() {
@@ -93,11 +91,4 @@ public class CurrencyConversionBean
         this.totalCalculatedAmount = totalCalculatedAmount;
     }
 
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
 }

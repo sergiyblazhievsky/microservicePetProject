@@ -27,20 +27,13 @@ public class CurrencyConversionController
     @Autowired
     private CurrencyConversionRepository repository;
 
-    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}/multiply/{multiplier}")
     public CurrencyConversionBean convertCurrencyFeign(@PathVariable String from, @PathVariable String to,
-                                                       @PathVariable BigDecimal quantity) {
+                                                       @PathVariable BigDecimal quantity,
+                                                       @PathVariable BigDecimal multiplier) {
 
-        CurrencyConversionBean conversionRequest = ratesProxy.retrieveExchangeValue(from, to);
-
-        logger.info("{}", conversionRequest);
-
-        Long userId = 1l;
-
-        CurrencyConversionBean currencyWithdraw = depositProxy.withdrawValue(userId, from, quantity.multiply(conversionRequest.getConversionMultiple()));
-
-        CurrencyConversionBean response = new CurrencyConversionBean(conversionRequest.getId(), from, to, conversionRequest.getConversionMultiple(), quantity,
-                                   quantity.multiply(conversionRequest.getConversionMultiple()), conversionRequest.getPort());
+        CurrencyConversionBean response = new CurrencyConversionBean(1l, from, to, multiplier, quantity,
+                                   quantity.multiply(multiplier));
 
         repository.saveAndFlush(response);
 
