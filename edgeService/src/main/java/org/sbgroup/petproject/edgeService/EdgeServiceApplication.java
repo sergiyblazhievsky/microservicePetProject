@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients({"org.sbgroup.petproject.exchangeService", "org.sbgroup.petproject.depositService",
-	"org.sbgroup.petproject.exchangeRatesService"})
+@EnableFeignClients("org.sbgroup.petproject.edgeService")
 public class EdgeServiceApplication {
 
 	public static void main(String[] args) {

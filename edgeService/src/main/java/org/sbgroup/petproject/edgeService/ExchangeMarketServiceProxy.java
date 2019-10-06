@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 @FeignClient(name="exchange-service", url="localhost:8100")
 public interface ExchangeMarketServiceProxy
 {
-    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}/multiply/{multiplier}")
     public CurrencyConversionBean convertCurrency
-        (@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity);
+        (@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity,
+         @PathVariable BigDecimal multiplier);
 }
